@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine for Aarti 💖</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+  }
+
+  .card {
+    background: white;
+    width: 360px;
+    padding: 30px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+    position: relative;
+    z-index: 2;
+  }
+
+  h1 {
+    color: #ff3366;
+  }
+
+  p {
+    font-size: 18px;
+    color: #444;
+  }
+
+  .buttons {
+    margin-top: 35px;
+    position: relative;
+    height: 120px;
+  }
+
+  button {
+    padding: 12px 28px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    position: absolute;
+    transition: 0.2s ease;
+  }
+
+  #yes {
+    background: #ff3366;
+    color: white;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #no {
+    background: #ddd;
+    color: #333;
+  }
+
+  /* Floating hearts */
+  .heart {
+    position: absolute;
+    bottom: -20px;
+    color: rgba(255,255,255,0.8);
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-110vh) scale(1.5);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2022/02/23/audio_45c1c7c4a0.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+  <h1>Hey Aarti 💕</h1>
+  <p>
+    I have one very important question… 🌹<br><br>
+    Will you be my Valentine and go on a cute date with me? ✨
+  </p>
+
+  <div class="buttons">
+    <button id="yes" onclick="yesClicked()">Yes 💖</button>
+    <button id="no" onmouseover="moveNo()">No 🙈</button>
+  </div>
+</div>
+
+<script>
+  function moveNo() {
+    const noBtn = document.getElementById("no");
+    const card = document.querySelector(".card");
+
+    const maxX = card.clientWidth - noBtn.clientWidth;
+    const maxY = card.clientHeight - noBtn.clientHeight;
+
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+  }
+
+  function yesClicked() {
+    document.querySelector(".card").innerHTML = `
+      <h1>You said YES!! 🥰💖</h1>
+      <p>
+        I knew it 😌✨<br><br>
+        Can’t wait to make beautiful memories together 🌹<br><br>
+        Happy Valentine’s Day, Aarti 💕
+      </p>
+    `;
+  }
+
+  // Create floating hearts
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+    heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }
+
+  setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
